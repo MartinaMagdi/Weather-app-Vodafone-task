@@ -1,0 +1,37 @@
+.city-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  margin: 15px;
+  font-size: 30px;
+  text-align: center;
+
+  .forecasts-container {
+    display: flex;
+    justify-content: space-between;
+
+    .date {
+      border: 1px solid;
+      padding: 10px;
+    }
+
+    .data-container {
+      border-right: 1px solid;
+      border-left: 1px solid;
+
+      .data {
+        display: flex;
+        justify-content: space-between;
+
+        .title {
+          font-weight: 500;
+        }
+
+        span {
+          margin: 15px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

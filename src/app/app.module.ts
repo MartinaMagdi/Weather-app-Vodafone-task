@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,7 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonToggleModule,
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

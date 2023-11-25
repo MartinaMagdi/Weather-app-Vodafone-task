@@ -1,2 +1,16 @@
-<div>
+<div class="container">
+  <div class="filter-container">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedDegree">
+      <mat-button-toggle value="celsius">Celsius</mat-button-toggle>
+      <mat-button-toggle value="fahrenheit">Fahrenheit</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="cities-container">
+    <app-weather-card
+      *ngFor="let city of cities"
+      [city]="city"
+      [degree]="selectedDegree"
+    ></app-weather-card>
+  </div>
 </div>

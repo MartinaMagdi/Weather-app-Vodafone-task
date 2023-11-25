@@ -1,1 +1,21 @@
-<p>weather-card works!</p>
+<div class="city-container">
+  <h2 class="title">{{ city.city }}</h2>
+  <hr />
+  <div class="forecasts-container">
+    <div class="forecast" *ngFor="let forecast of city.forecast">
+      <h4 class="date">{{ forecast.date }}</h4>
+      <div class="data-container">
+        <div class="data" *ngIf="degree =='celsius'">
+          <span class="title">Celsius:</span> <span>{{ forecast.temperatureCelsius }}°</span>
+        </div>
+        <div class="data" *ngIf="degree == 'fahrenheit'">
+          <span class="title">Fahrenheit:</span>
+          <span>{{ forecast.temperatureFahrenheit }}°</span>
+        </div>
+        <div class="data">
+          <span class="title">Humidity:</span> <span>{{ forecast.humidity }}°</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

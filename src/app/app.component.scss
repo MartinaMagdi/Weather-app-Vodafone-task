@@ -1,0 +1,13 @@
+.container {
+  .filter-container {
+    background-color: #41a7f7;
+    padding: 15px;
+  }
+
+  .cities-container {
+    background-color: #e2f2ff;
+    display: grid;
+    grid-template-columns: auto;
+    padding: 25px;
+  }
+}
