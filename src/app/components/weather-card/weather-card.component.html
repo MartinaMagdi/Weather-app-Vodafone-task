@@ -5,10 +5,10 @@
     <div class="forecast" *ngFor="let forecast of city.forecast">
       <h4 class="date">{{ forecast.date }}</h4>
       <div class="data-container">
-        <div class="data" *ngIf="degree =='celsius'">
+        <div class="data" *ngIf="tempType =='celsius'">
           <span class="title">Celsius:</span> <span>{{ forecast.temperatureCelsius }}°</span>
         </div>
-        <div class="data" *ngIf="degree == 'fahrenheit'">
+        <div class="data" *ngIf="tempType == 'fahrenheit'">
           <span class="title">Fahrenheit:</span>
           <span>{{ forecast.temperatureFahrenheit }}°</span>
         </div>

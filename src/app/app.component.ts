@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private weatherService: WeatherAPIsService) {}
 
   cities: City[] = [];
-  selectedDegree: string = 'celsius';
+  selectedTempType: string = 'celsius';
 
   ngOnInit() {
     this.getAll();
