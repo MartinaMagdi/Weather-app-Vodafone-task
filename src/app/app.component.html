@@ -4,6 +4,14 @@
       <mat-button-toggle value="celsius">Celsius</mat-button-toggle>
       <mat-button-toggle value="fahrenheit">Fahrenheit</mat-button-toggle>
     </mat-button-toggle-group>
+
+    <mat-form-field>
+      <mat-label>Select a City</mat-label>
+      <mat-select name="city" [(ngModel)]="selectedCity" (ngModelChange)="getCity()">
+          <mat-option value="0">All</mat-option>
+          <mat-option *ngFor="let city of citiesList" [value]="city.id">{{city.city}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="cities-container">

@@ -7,5 +7,5 @@ import { City } from 'src/app/Interfaces/city';
 })
 export class WeatherCardComponent {
   @Input() city!: any;
-  @Input() tempType!: any;
+  @Input() tempType!: string;
 }
