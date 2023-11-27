@@ -33,6 +33,8 @@ export class AppComponent {
   }
 
   resetCities() {
+    this.selectedCity = 0;
+    this.selectedDate = 0;
     this.cities = this.originalCities
   }
 
