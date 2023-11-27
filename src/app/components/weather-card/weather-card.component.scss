@@ -5,10 +5,15 @@
   margin: 15px;
   font-size: 30px;
   text-align: center;
-
+  
   .forecasts-container {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    
+    .forecast {
+      width: 100%;      
+    }
 
     .date {
       border: 1px solid;

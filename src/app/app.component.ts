@@ -23,7 +23,29 @@ export class AppComponent {
     this.weatherService.getAll().subscribe((data: any) => {
       this.cities = data;
       this.setCitiesList();
+      this.filterCitiesWithLatestDate();
     });
+  }
+
+  filterCitiesWithLatestDate() {
+    this.cities.forEach((city: any) => {
+      city = this.getLatestDate(city)
+    });
+  }
+
+  getLatestDate(city: any) {
+    let currentDate = new Date(0);
+
+    city.forecast.forEach((forecast: any) => {
+      let date = new Date(forecast.date);
+
+      if (date > currentDate) {
+        currentDate = date;
+        city.forecast = [];
+        city.forecast.push(forecast);
+      }
+    });
+    return city;
   }
 
   setCitiesList() {
@@ -33,14 +55,14 @@ export class AppComponent {
   }
 
   getCity() {
-    if(this.selectedCity == 0) {
+    if (this.selectedCity == 0) {
       this.getAll();
     } else {
       this.weatherService
         .getCityForecast(this.selectedCity)
         .subscribe((data: any) => {
           this.cities = [];
-          this.cities.push(data)
+          this.cities.push(data);
         });
     }
   }
