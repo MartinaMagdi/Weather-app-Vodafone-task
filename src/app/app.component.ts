@@ -32,6 +32,10 @@ export class AppComponent {
     });
   }
 
+  resetCities() {
+    this.cities = this.originalCities
+  }
+
   filterCitiesWithDate(passedDate?: any) {
     let currentDate: any;
     passedDate ? (currentDate = passedDate) : (currentDate = new Date(0));
@@ -62,7 +66,7 @@ export class AppComponent {
 
   getCity() {
     if (this.selectedCity == 0) {
-      this.cities = this.originalCities
+      this.resetCities();
     } else {
       this.weatherService
         .getCityForecast(this.selectedCity)
