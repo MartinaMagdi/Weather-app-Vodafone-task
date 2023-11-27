@@ -1,4 +1,4 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { WeatherAPIsService } from './services/weather-apis.service';
 import { City } from './Interfaces/city';
 
@@ -11,6 +11,7 @@ export class AppComponent {
   constructor(private weatherService: WeatherAPIsService) {}
 
   cities: City[] = [];
+  originalCities: City[] = [];
   selectedTempType: string = 'celsius';
   selectedCity!: number;
   citiesList: any[] = [];
@@ -25,6 +26,7 @@ export class AppComponent {
     this.selectedDate = 0;
     this.weatherService.getAll().subscribe((data: any) => {
       this.cities = data;
+      this.originalCities = data
       this.setCitiesList();
       this.filterCitiesWithDate();
     });
@@ -60,7 +62,7 @@ export class AppComponent {
 
   getCity() {
     if (this.selectedCity == 0) {
-      this.getAll();
+      this.cities = this.originalCities
     } else {
       this.weatherService
         .getCityForecast(this.selectedCity)
