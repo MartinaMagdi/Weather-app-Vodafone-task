@@ -30,31 +30,26 @@ export class AppComponent {
     });
   }
 
-  filterCitiesWithDate(date?: any) {
-    this.cities.forEach((city: any) => {
-      city = this.getDate(city, date);
-    });
-  }
-
-  getDate(city: any, passedDate?: any) {
+  filterCitiesWithDate(passedDate?: any) {
     let currentDate: any;
     passedDate ? (currentDate = passedDate) : (currentDate = new Date(0));
 
-    city.forecast.forEach((forecast: any) => {
-      if (passedDate) {
-        if (forecast.date == currentDate) {
-          city.forecast = [];
-          city.forecast.push(forecast);
+    this.cities.forEach((city: any) => {
+      city.forecast.forEach((forecast: any) => {
+        if (passedDate) {
+          if (forecast.date == currentDate) {
+            city.forecast = [];
+            city.forecast.push(forecast);
+          }
+        } else {
+          let date = new Date(forecast.date);
+          if (date > currentDate) {
+            city.forecast = [];
+            city.forecast.push(forecast);
+          }
         }
-      } else {
-        let date = new Date(forecast.date);
-        if (date > currentDate) {
-          city.forecast = [];
-          city.forecast.push(forecast);
-        }
-      }
+      });
     });
-    return city;
   }
 
   setCitiesList() {
