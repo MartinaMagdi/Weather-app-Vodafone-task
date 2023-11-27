@@ -14,35 +14,44 @@ export class AppComponent {
   selectedTempType: string = 'celsius';
   selectedCity!: number;
   citiesList: any[] = [];
+  selectedDate!: any;
 
   ngOnInit() {
     this.getAll();
   }
 
   getAll() {
+    this.selectedCity = 0;
+    this.selectedDate = 0;
     this.weatherService.getAll().subscribe((data: any) => {
       this.cities = data;
       this.setCitiesList();
-      this.filterCitiesWithLatestDate();
+      this.filterCitiesWithDate();
     });
   }
 
-  filterCitiesWithLatestDate() {
+  filterCitiesWithDate(date?: any) {
     this.cities.forEach((city: any) => {
-      city = this.getLatestDate(city)
+      city = this.getDate(city, date);
     });
   }
 
-  getLatestDate(city: any) {
-    let currentDate = new Date(0);
+  getDate(city: any, passedDate?: any) {
+    let currentDate: any;
+    passedDate ? (currentDate = passedDate) : (currentDate = new Date(0));
 
     city.forecast.forEach((forecast: any) => {
-      let date = new Date(forecast.date);
-
-      if (date > currentDate) {
-        currentDate = date;
-        city.forecast = [];
-        city.forecast.push(forecast);
+      if (passedDate) {
+        if (forecast.date == currentDate) {
+          city.forecast = [];
+          city.forecast.push(forecast);
+        }
+      } else {
+        let date = new Date(forecast.date);
+        if (date > currentDate) {
+          city.forecast = [];
+          city.forecast.push(forecast);
+        }
       }
     });
     return city;
@@ -65,5 +74,14 @@ export class AppComponent {
           this.cities.push(data);
         });
     }
+  }
+
+  applyDateFiltration() {
+    const date = new Date(this.selectedDate);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    this.filterCitiesWithDate(formattedDate);
   }
 }
